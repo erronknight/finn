@@ -78,7 +78,7 @@ def throughput_test_remote(model, batchsize=1000):
             '--platform={} "'
         ).format(batchsize, bitfile, platform)
     cmd = (
-        local_prefix + 'ssh {}@{} -p {} "cd {}/{}; ' + remote_prefix + remote_cmd
+        local_prefix + 'ssh -i ~/.ssh/id_rsa {}@{} -p {} "cd {}/{}; ' + remote_prefix + remote_cmd
     ).format(pynq_username, pynq_ip, pynq_port, pynq_target_dir, deployment_folder)
     bash_command = ["/bin/bash", "-c", cmd]
     process_throughput_test = subprocess.Popen(bash_command, stdout=subprocess.PIPE)
@@ -90,7 +90,7 @@ def throughput_test_remote(model, batchsize=1000):
     except FileNotFoundError:
         pass
 
-    cmd = local_prefix + "scp -P{} {}@{}:{}/{}/nw_metrics.txt {}".format(
+    cmd = local_prefix + "scp -i ~/.ssh/id_rsa -P{} {}@{}:{}/{}/nw_metrics.txt {}".format(
         pynq_port,
         pynq_username,
         pynq_ip,

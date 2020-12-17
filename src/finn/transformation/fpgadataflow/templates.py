@@ -466,7 +466,7 @@ if __name__ == "__main__":
   ok = 0
   nok = 0
   total = test_imgs.shape[0]
-  driver = FINNAccelDriver(bsize, "resizer.bit", "zynq-iodma")
+  driver = FINNAccelDriver(bsize, "a.xclbin", "alveo")
 
   n_batches = int(total / bsize)
 

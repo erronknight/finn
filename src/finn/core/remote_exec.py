@@ -71,7 +71,7 @@ def remote_exec(model, execution_context):
     # extracting last folder of absolute path (deployment_dir)
     deployment_folder = os.path.basename(os.path.normpath(deployment_dir))
     # copy input to PYNQ board
-    cmd = local_prefix + "scp -P{} -r {}/input.npy {}@{}:{}/{}".format(
+    cmd = local_prefix + "scp -i ~/.ssh/id_rsa -P{} -r {}/input.npy {}@{}:{}/{}".format(
         pynq_port,
         deployment_dir,
         pynq_username,
@@ -93,7 +93,7 @@ def remote_exec(model, execution_context):
             '--platform={} "'
         ).format(batchsize, bitfile, platform)
     cmd = (
-        local_prefix + 'ssh {}@{} -p {} "cd {}/{}; ' + remote_prefix + remote_cmd
+        local_prefix + 'ssh -i ~/.ssh/id_rsa {}@{} -p {} "cd {}/{}; ' + remote_prefix + remote_cmd
     ).format(pynq_username, pynq_ip, pynq_port, pynq_target_dir, deployment_folder)
     bash_command = ["/bin/bash", "-c", cmd]
     process_exec_accel = subprocess.Popen(bash_command, stdout=subprocess.PIPE)
@@ -104,7 +104,7 @@ def remote_exec(model, execution_context):
     except FileNotFoundError:
         pass
     # copy generated output to local
-    cmd = local_prefix + "scp -P{} {}@{}:{}/{}/output.npy {}".format(
+    cmd = local_prefix + "scp -i ~/.ssh/id_rsa -P{} {}@{}:{}/{}/output.npy {}".format(
         pynq_port,
         pynq_username,
         pynq_ip,
