@@ -42,6 +42,7 @@ WORKDIR /workspace
 #Install openssl 1.1.1
 RUN apt-get update
 RUN apt install build-essential checkinstall zlib1g-dev -y
+RUN apt-get -y install sshpass wget unzip
 WORKDIR /usr/local/src
 RUN wget https://www.openssl.org/source/openssl-1.1.1.tar.gz
 RUN tar -xf openssl-1.1.1.tar.gz
