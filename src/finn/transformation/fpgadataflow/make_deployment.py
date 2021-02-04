@@ -105,14 +105,14 @@ class DeployToPYNQ(Transformation):
             prefix = "sshpass -p %s " % self.password
 
         # create target directory on PYNQ board
-        cmd = prefix + 'ssh {}@{} -p {} "mkdir -p {}"'.format(
+        cmd = prefix + 'ssh -i ~/.ssh/id_rsa {}@{} -p {} "mkdir -p {}"'.format(
             self.username, self.ip, self.port, self.target_dir
         )
         bash_command = ["/bin/bash", "-c", cmd]
         process_compile = subprocess.Popen(bash_command, stdout=subprocess.PIPE)
         process_compile.communicate()
         # copy directory to PYNQ board using scp and sshpass
-        cmd = prefix + "scp -P{} -r {} {}@{}:{}".format(
+        cmd = prefix + "scp -i ~/.ssh/id_rsa -P{} -r {} {}@{}:{}".format(
             self.port, deployment_dir, self.username, self.ip, self.target_dir,
         )
         bash_command = ["/bin/bash", "-c", cmd]

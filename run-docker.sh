@@ -118,7 +118,7 @@ DOCKER_INTERACTIVE=""
 
 if [ "$1" = "test" ]; then
         gecho "Running test suite (all tests)"
-        DOCKER_CMD="python setup.py test"
+        DOCKER_CMD="source ~/.bashrc; python setup.py test"
 elif [ "$1" = "quicktest" ]; then
         gecho "Running test suite (non-Vivado, non-slow tests)"
         DOCKER_CMD="quicktest.sh"
@@ -181,6 +181,10 @@ if [ ! -z "$VITIS_PATH" ];then
   DOCKER_EXEC+="-e VITIS_PATH=$VITIS_PATH "
   DOCKER_EXEC+="-e PLATFORM_REPO_PATHS=$PLATFORM_REPO_PATHS "
   DOCKER_EXEC+="-e XILINX_XRT=$XILINX_XRT "
+  
+  DOCKER_EXEC+="-v $DOCNAV_PATH:$DOCNAV_PATH "
+  DOCKER_EXEC+="-e DOCNAV_PATH:$DOCNAV_PATH "
+
   DOCKER_EXEC+="-e ALVEO_IP=$ALVEO_IP "
   DOCKER_EXEC+="-e ALVEO_USERNAME=$ALVEO_USERNAME "
   DOCKER_EXEC+="-e ALVEO_PASSWORD=$ALVEO_PASSWORD "
