@@ -1,0 +1,52 @@
+
+fuse_model:†
+∫
+	global_in!StreamingDataflowPartition_0_out0StreamingDataflowPartition_0"StreamingDataflowPartition*J
+model">/tmp/finn_dev_sarah/dataflow_partition0_cdyun3bn/df_model.onnx†:finn
+“
+!StreamingDataflowPartition_0_out0!StreamingDataflowPartition_1_out0StreamingDataflowPartition_1"StreamingDataflowPartition*J
+model">/tmp/finn_dev_sarah/dataflow_partition2_fim3fyz2/df_model.onnx†:finn
+ª
+!StreamingDataflowPartition_1_out0
+global_outStreamingDataflowPartition_2"StreamingDataflowPartition*J
+model">/tmp/finn_dev_sarah/dataflow_partition1_2d54w83j/df_model.onnx†:finn
+fuse-graphZ
+	global_in
+	
+
+êb
+
+global_out
+
+
+j
+	global_in
+	
+
+êj3
+!StreamingDataflowPartition_1_out0
+
+
+j4
+!StreamingDataflowPartition_0_out0
+	
+
+êr@
+	global_in
+finn_datatypeUINT8
+tensor_layout
+['N', 'C']rA
+
+global_out
+finn_datatypeUINT8
+tensor_layout
+['N', 'C']r;
+!StreamingDataflowPartition_1_out0
+finn_datatypeUINT8r;
+!StreamingDataflowPartition_0_out0
+finn_datatypeUINT8Br;
+pynq_driver_dir(/tmp/finn_dev_sarah/pynq_driver_iiqs3h61r?
+vitis_link_proj,/tmp/finn_dev_sarah/vitis_link_proj_31d_qfgar@
+bitfile5/tmp/finn_dev_sarah/vitis_link_proj_31d_qfga/a.xclbinrQ
+vivado_synth_rpt=/tmp/finn_dev_sarah/vitis_link_proj_31d_qfga/synth_report.xmlr
+platformalveo
