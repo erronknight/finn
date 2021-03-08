@@ -36,6 +36,25 @@ ARG PASSWD
 
 WORKDIR /workspace
 
+#install wget
+RUN apt-get update
+RUN apt-get install wget
+#Install openssl 1.1.1
+RUN apt-get update
+RUN apt install build-essential checkinstall zlib1g-dev -y
+WORKDIR /usr/local/src
+RUN wget https://www.openssl.org/source/openssl-1.1.1.tar.gz
+RUN tar -xf openssl-1.1.1.tar.gz
+WORKDIR /usr/local/src/openssl-1.1.1
+RUN bash config --prefix=/usr/local/ssl --openssldir=/usr/local/ssl shared zlib
+RUN make
+RUN make test
+RUN make install
+WORKDIR /etc/ld.so.conf.d/
+RUN echo "/usr/local/ssl/lib" > openssl-1.1.1.conf
+RUN ldconfig -v
+WORKDIR /workspace
+
 RUN apt-get update
 RUN apt-get -y upgrade
 RUN apt-get install -y build-essential libglib2.0-0 libsm6 libxext6 libxrender-dev
