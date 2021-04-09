@@ -36,5 +36,5 @@ def showSrc(what):
 
 # port=8081, host="0.0.0.0"
 def showInNetron(model_filename):
-    netron.start(model_filename, address=("0.0.0.0", 8081))
+    netron.start(model_filename, address=8081)
     return IFrame(src="http://0.0.0.0:8081/", width="100%", height=400)
